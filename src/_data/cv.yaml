@@ -3,8 +3,7 @@ profileImage: "assets/profile.jpg"
 contact:
   city: "Budapest"
   country: "HU"
-  email: "sunikovacs@gmail.com"
-  phone: "+36 70 634 7173"
+  email: "yourmailhere@gmail.com"
   github: "github.com/samthing94"
   githubUrl: "https://github.com/samthing94"
   linkedin: "linkedin.com/in/sámuel-kovács-5b6593157"
@@ -17,10 +16,10 @@ i18n:
     summary: >
       5+ év production embedded fejlesztés IoT / automotive projektekben. C/C++, Python tooling,
       bootloaderek, UDS over CAN, secure update workflow (HTTP/XMODEM), BLE stackek és alacsony
-      fogyasztás. Erősségek: megbízhatóság (CI/CD, unit tesztek), terepi diagnosztika, kollaboráció.
+      fogyasztás.
     kpiYearsNum: "5+ év"
     kpiYearsLbl: "production firmware"
-    kpiStackNum: "IoT + Auto"
+    kpiStackNum: "IoT + Automotive"
     kpiStackLbl: "STM32 / nRF52 / EFR32"
     sections:
       experience: "TAPASZTALAT"
@@ -232,13 +231,12 @@ skills:
   - "MISRA C"
 
 projects:
-  - hu:
-      title: "Healthy Timer (Chrome extension)"
-      desc: "Egészséges munkarutin időzítő Chrome böngészőhöz, állítható asztalokhoz is ideális."
-    en:
-      title: "Healthy Timer (Chrome extension)"
-      desc: "Healthy work-routine timer for Chrome, ideal for sit-stand desks."
-
+  # - hu:
+  #     title: "Healthy Timer (Chrome extension)"
+  #     desc: "Egészséges munkarutin időzítő Chrome böngészőhöz, állítható asztalokhoz is ideális."
+  #   en:
+  #     title: "Healthy Timer (Chrome extension)"
+  #     desc: "Healthy work-routine timer for Chrome, ideal for sit-stand desks."
   - hu:
       title: "Smart Water Meter Firmware"
       desc: "Production firmware okosmérőkhöz (EFR32/MSP430), LwM2M eszközmenedzsmenttel."
