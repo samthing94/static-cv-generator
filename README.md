@@ -1,4 +1,4 @@
-# static-cv-generator
+# Static CV generator
 
 A configurable **static CV generator** built with **Eleventy (11ty)** and **YAML content**, featuring lightweight **client-side i18n (HU/EN)**, responsive design, and **print-friendly PDF export**.  
 Designed for easy customization and seamless deployment on **Netlify**.
