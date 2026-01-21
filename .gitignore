@@ -1,0 +1,55 @@
+# ===============================
+# Node / npm
+# ===============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===============================
+# Eleventy build output
+# ===============================
+_site/
+.cache/
+
+# ===============================
+# Environment variables
+# ===============================
+.env
+.env.*
+!.env.example
+
+# ===============================
+# OS / editor junk
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# IDE / editor configs
+# ===============================
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+.idea/
+*.swp
+*.swo
+
+# ===============================
+# Optional local artifacts
+# ===============================
+*.log
+*.tmp
+*.bak
+
+# ===============================
+# Netlify
+# ===============================
+.netlify/
+
+# ===============================
+# PDFs / exports (optional)
+# ===============================
+*.pdf

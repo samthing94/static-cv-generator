@@ -1,0 +1,569 @@
+{% set lang = "hu" %}
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Online CV</title>
+  <meta name="description" content="Online CV" />
+  <style>
+    :root{
+      --bg:#0b1220; --card:rgba(255,255,255,.06); --card2:rgba(255,255,255,.09);
+      --text:rgba(255,255,255,.92); --muted:rgba(255,255,255,.70); --faint:rgba(255,255,255,.45);
+      --border:rgba(255,255,255,.12); --shadow:0 12px 35px rgba(0,0,0,.35); --shadow2:0 10px 24px rgba(0,0,0,.25);
+      --accent:#7c5cff; --accent2:#27d7ff; --good:#2ee59d;
+      --radius:18px; --radius2:14px; --maxw:1080px;
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif;
+    }
+    [data-theme="light"]{
+      --bg:#f6f7fb; --card:rgba(10,20,40,.04); --card2:rgba(10,20,40,.06);
+      --text:rgba(10,20,40,.92); --muted:rgba(10,20,40,.70); --faint:rgba(10,20,40,.45);
+      --border:rgba(10,20,40,.14); --shadow:0 12px 35px rgba(10,20,40,.10); --shadow2:0 10px 24px rgba(10,20,40,.08);
+      --accent:#5b4bff; --accent2:#00a7c6; --good:#0ca678;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:var(--sans); color:var(--text); line-height:1.5;
+      background:
+        radial-gradient(900px 600px at 10% 10%, color-mix(in srgb, var(--accent) 25%, transparent), transparent 60%),
+        radial-gradient(900px 600px at 90% 20%, color-mix(in srgb, var(--accent2) 22%, transparent), transparent 65%),
+        radial-gradient(900px 700px at 60% 90%, color-mix(in srgb, var(--good) 16%, transparent), transparent 70%),
+        var(--bg);
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--maxw); margin:36px auto; padding:0 18px 40px}
+    .topbar{display:flex; gap:10px; justify-content:flex-end; align-items:center; margin-bottom:14px; flex-wrap:wrap}
+    .btn{
+      appearance:none; border:1px solid var(--border); background:color-mix(in srgb, var(--card2) 90%, transparent);
+      color:var(--text); border-radius:999px; padding:10px 12px; font-weight:650; letter-spacing:.2px;
+      box-shadow:var(--shadow2); cursor:pointer; display:inline-flex; align-items:center; gap:8px; user-select:none
+    }
+    .btn:hover{transform:translateY(-1px)} .btn:active{transform:translateY(0)}
+    .btn small{color:var(--muted); font-weight:600}
+    .btn svg{width:18px;height:18px;opacity:.9}
+
+    header.hero{
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, color-mix(in srgb, var(--card) 92%, transparent), color-mix(in srgb, var(--card2) 92%, transparent));
+      border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;
+      display:grid; gap:16px; position:relative; overflow:hidden;
+    }
+    header.hero:before{
+      content:""; position:absolute; inset:-2px;
+      background:
+        radial-gradient(600px 300px at 20% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 65%),
+        radial-gradient(500px 260px at 80% 10%, color-mix(in srgb, var(--accent2) 16%, transparent), transparent 60%);
+      pointer-events:none;
+    }
+    header.hero > *{position:relative}
+
+    .hero-top{display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .profile{display:flex; gap:14px; align-items:center; min-width:min(520px, 100%)}
+    .avatar-ring{
+      padding:4px; border-radius:999px; border:1px solid var(--border); box-shadow:var(--shadow2); display:inline-flex;
+      background:
+        radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--accent) 70%, transparent), transparent 45%),
+        radial-gradient(circle at 70% 80%, color-mix(in srgb, var(--accent2) 70%, transparent), transparent 50%),
+        color-mix(in srgb, var(--card2) 80%, transparent);
+    }
+    .avatar{width:88px;height:88px;border-radius:50%;object-fit:cover;border:1px solid var(--border);background:color-mix(in srgb, var(--card2) 85%, transparent)}
+    .name{font-size:34px; line-height:1.12; margin:0; letter-spacing:-.6px}
+    .role{margin:6px 0 0; color:var(--muted); font-weight:650; letter-spacing:.2px}
+
+    .pillrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .pill{
+      border:1px solid var(--border); background:color-mix(in srgb, var(--card2) 90%, transparent);
+      border-radius:999px; padding:6px 10px; font-weight:650; color:var(--muted);
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .pill b{color:var(--text); font-weight:750}
+    .pill code{
+      font-family:var(--mono); font-size:12px;
+      color:color-mix(in srgb, var(--accent2) 75%, var(--text));
+      background:color-mix(in srgb, var(--card) 80%, transparent);
+      border:1px solid var(--border); padding:2px 6px; border-radius:999px;
+    }
+    .dot{width:4px;height:4px;border-radius:50%;background:var(--border);display:inline-block;opacity:.9}
+    .summary{color:var(--muted); margin:0; max-width:82ch; font-size:15px}
+
+    .kpi{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .box{border:1px solid var(--border); background:color-mix(in srgb, var(--card2) 85%, transparent); border-radius:var(--radius2); padding:12px}
+    .num{font-size:18px; font-weight:900; letter-spacing:-.4px}
+    .lbl{color:var(--muted); font-weight:650; font-size:12px; margin-top:2px}
+
+    .grid{margin-top:18px; display:grid; grid-template-columns:1.15fr .85fr; gap:18px}
+    @media (max-width:980px){ .grid{grid-template-columns:1fr} .profile{min-width:100%} }
+
+    .card{
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, color-mix(in srgb, var(--card) 90%, transparent), color-mix(in srgb, var(--card2) 92%, transparent));
+      border-radius:var(--radius); box-shadow:var(--shadow); padding:18px;
+    }
+    .section-title{display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 12px}
+    .section-title h2{margin:0; font-size:16px; letter-spacing:.2px; text-transform:uppercase; color:var(--muted)}
+    .section-title .hint{font-size:12px; color:var(--faint); font-weight:650}
+
+    .item{border:1px solid var(--border); background:color-mix(in srgb, var(--card2) 85%, transparent); border-radius:var(--radius2); padding:14px}
+    .item + .item{margin-top:10px}
+    .item-head{display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 12px; align-items:baseline}
+    .item-head .title{font-weight:800; letter-spacing:.2px}
+    .item-head .meta{color:var(--muted); font-weight:650; font-size:13px; display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+    .item p{margin:10px 0 0; color:var(--muted); font-size:14px}
+    .bullets{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:14px}
+    .bullets li{margin:6px 0}
+    .tags{margin-top:10px; display:flex; flex-wrap:wrap; gap:8px}
+    .tag{font-family:var(--mono); font-size:12px; border:1px solid var(--border); background:color-mix(in srgb, var(--card) 90%, transparent); padding:5px 8px; border-radius:999px; color:var(--muted)}
+    .skills{display:flex; flex-wrap:wrap; gap:8px}
+    .skill{border:1px solid var(--border); background:color-mix(in srgb, var(--card) 90%, transparent); border-radius:999px; padding:7px 10px; font-weight:750; font-size:13px; color:var(--muted)}
+    .list{display:flex; flex-direction:column; gap:10px}
+    .mini{border:1px solid var(--border); background:color-mix(in srgb, var(--card2) 85%, transparent); border-radius:var(--radius2); padding:12px}
+    .mini h3{margin:0; font-size:14px; letter-spacing:.2px}
+    .mini p{margin:6px 0 0; color:var(--muted); font-size:13px}
+    footer{margin-top:18px; color:var(--faint); font-size:12px; text-align:center}
+    footer code{font-family:var(--mono)}
+
+    /* ✅ PRINT: kontrollált oldaltörés experience-enként */
+    @media print{
+      .topbar{display:none !important}
+      body{background:white}
+
+      :root, [data-theme="light"], [data-theme="dark"]{
+          --bg:white;
+          --card:white;
+          --card2:white;
+          --text:#111;
+          --muted:#333;
+          --faint:#555;
+          --border:#ddd;
+          --shadow:none;
+          --shadow2:none;
+      }
+
+      /* 🔽 kisebb betűméret printhez */
+      html{ font-size:12px; }
+      body{ line-height:1.35; }
+
+      .wrap{margin:0; padding:0}
+      header.hero, .card, .item, .mini, .box{
+          box-shadow:none !important;
+      }
+
+      a{text-decoration:none}
+
+      /* 🔑 A LÉNYEG */
+
+      /* 1️⃣ Experience kártya ne törjön ketté */
+      .item{
+          break-inside: avoid;
+          page-break-inside: avoid;
+      }
+
+      /* 2️⃣ De a kártyák KÖZÖTT lehessen oldaltörés */
+      .item + .item{
+          break-before: auto;
+          page-break-before: auto;
+      }
+
+      /* 3️⃣ Címsor + bullet lista együtt maradjon */
+      .item-head,
+      .bullets{
+          break-inside: avoid;
+          page-break-inside: avoid;
+      }
+
+      /* 4️⃣ Grid printben egy oszlop → stabil tördelés */
+      .grid{
+          grid-template-columns:1fr !important;
+      }
+      /* ✅ Skills (és a többi oldalsáv kártya) ne törjön ketté */
+      aside.card,
+      aside .section-title,
+      aside .skills,
+      aside .list,
+      aside .mini {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      footer{display:none}
+    
+    }
+
+    @media (max-width: 560px){
+
+      header.hero{
+        padding:16px;
+      }
+
+      .hero-top{
+        justify-content:flex-start;
+      }
+
+      /* Mobilon álljon egymás alá, legyen középre rendezve */
+      .profile{
+        min-width: 0;              /* <-- ez fontos, felülírja a 520px logikát */
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .avatar{
+        width:72px;
+        height:72px;
+      }
+
+      .name{
+        font-size:28px;
+      }
+
+      .role{
+        font-size:14px;
+      }
+
+      .summary{
+        font-size:14px;
+        max-width: 58ch;
+        margin-top: 6px;
+      }
+
+      /* A pill-ek legyenek "rendezettebbek" és ne legyen túl széles */
+      .pillrow{
+        justify-content:center;
+        gap:6px;
+      }
+
+      .pill{
+        padding:6px 9px;
+        font-size:13px;
+      }
+
+      .pill code{
+        font-size:11px;
+      }
+
+      /* KPI-k mobilon egy oszlopba */
+      .kpi{
+        grid-template-columns: 1fr;
+      }
+
+      .topbar{
+        flex-wrap: nowrap;        /* ⬅️ ne törjön új sorba */
+        gap: 8px;
+      }
+
+      .topbar .btn{
+        padding: 8px 10px;        /* kicsit kompaktabb */
+        font-size: 13px;
+        white-space: nowrap;     /* ⬅️ gombon belül se törjön */
+      }
+
+      .topbar .btn small{
+        display: none;           /* (light/dark) eltűnik mobilon */
+      }
+
+      .topbar .btn svg{
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+
+  </style>
+</head>
+
+<body data-theme="dark">
+  <div class="wrap">
+    <div class="topbar">
+      <button class="btn" id="langBtn" title="Nyelv váltása">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M2 12h20" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 2c3 3 5 6.5 5 10s-2 7-5 10c-3-3-5-6.5-5-10s2-7 5-10Z" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span data-i18n="btn_lang">HU / EN</span>
+      </button>
+
+      <button class="btn" id="themeBtn" title="Téma váltása">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span data-i18n="btn_theme">Téma</span> <small>(light/dark)</small>
+      </button>
+
+      <button class="btn" onclick="window.print()">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 9V3h12v6" stroke="currentColor" stroke-width="2"/>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" stroke="currentColor" stroke-width="2"/>
+          <path d="M6 14h12v7H6v-7Z" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span data-i18n="btn_print">Print / Save PDF</span>
+      </button>
+    </div>
+
+    <header class="hero">
+      <div class="hero-top">
+        <div class="profile">
+          <span class="avatar-ring">
+            <img class="avatar" src="{{ cv.profileImage }}" alt="Profile picture" />
+          </span>
+          <div>
+            <h1 class="name" data-i18n="name"></h1>
+            <div class="role" data-i18n="role"></div>
+            <div class="pillrow">
+              <span class="pill"><b>{{ cv.contact.city }}</b> <span class="dot"></span> {{ cv.contact.country }}</span>
+              <span class="pill"><b>Email</b> <code>{{ cv.contact.email }}</code></span>
+              <span class="pill"><b>GitHub</b> <code>{{ cv.contact.github }}</code></span>
+              <span class="pill"><b>LinkedIn</b> <code>{{ cv.contact.linkedin }}</code></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="summary" data-i18n="summary"></p>
+
+      <div class="kpi">
+        <div class="box">
+          <div class="num" data-i18n="kpiYearsNum"></div>
+          <div class="lbl" data-i18n="kpiYearsLbl"></div>
+        </div>
+        <div class="box">
+          <div class="num" data-i18n="kpiStackNum"></div>
+          <div class="lbl" data-i18n="kpiStackLbl"></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main class="card">
+        <div class="section-title">
+          <h2 data-i18n="sec_experience"></h2>
+          <div class="hint" data-i18n="sec_experience_hint"></div>
+        </div>
+
+        {% for job in cv.experience | sortByStartDesc %}
+        <section class="item">
+        <div class="item-head">
+            <div class="title">{{ job[lang].title }}</div>
+            <div class="meta">{{ job[lang].meta }}</div>
+        </div>
+
+        <p>{{ job[lang].desc }}</p>
+
+        <ul class="bullets">
+            {% for b in job[lang].bullets %}
+            <li>{{ b }}</li>
+            {% endfor %}
+        </ul>
+
+        <div class="tags">
+            {% for t in job.tags %}
+            <span class="tag">{{ t }}</span>
+            {% endfor %}
+        </div>
+        </section>
+        {% endfor %}
+
+
+
+        <div style="height:14px"></div>
+
+        <div class="section-title">
+          <h2 data-i18n="sec_education"></h2>
+          <div class="hint" data-i18n="sec_education_hint"></div>
+        </div>
+
+        {% for ed in cv.education | sortByStartDesc %}
+        <section class="item">
+          <div class="item-head">
+            <div class="title" data-i18n="edu_{{ loop.index0 }}_title"></div>
+            <div class="meta" data-i18n="edu_{{ loop.index0 }}_meta"></div>
+          </div>
+          <p data-i18n="edu_{{ loop.index0 }}_desc"></p>
+        </section>
+        {% endfor %}
+      </main>
+
+      <aside class="card">
+        <div class="section-title">
+          <h2 data-i18n="sec_skills"></h2>
+          <div class="hint" data-i18n="sec_skills_hint"></div>
+        </div>
+
+        <div class="skills">
+          {% for s in cv.skills %}
+            <span class="skill">{{ s }}</span>
+          {% endfor %}
+        </div>
+
+        <div style="height:16px"></div>
+
+        <div class="section-title">
+          <h2 data-i18n="sec_projects"></h2>
+          <div class="hint" data-i18n="sec_projects_hint"></div>
+        </div>
+
+        <div class="list">
+          {% for p in cv.projects %}
+          <div class="mini">
+            <h3 data-i18n="pr_{{ loop.index0 }}_title"></h3>
+            <p data-i18n="pr_{{ loop.index0 }}_desc"></p>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div style="height:16px"></div>
+
+        <div class="section-title">
+          <h2 data-i18n="sec_languages"></h2>
+          <div class="hint" data-i18n="sec_languages_hint"></div>
+        </div>
+
+        <div class="list">
+          {% for l in cv.languages %}
+          <div class="mini">
+            <h3 data-i18n="lang_{{ loop.index0 }}_title"></h3>
+            <p data-i18n="lang_{{ loop.index0 }}_desc"></p>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div style="height:16px"></div>
+
+        <div class="section-title">
+          <h2 data-i18n="sec_contact"></h2>
+          <div class="hint" data-i18n="sec_contact_hint"></div>
+        </div>
+
+        <div class="list">
+          <div class="mini">
+            <h3>Email</h3>
+            <p><a href="mailto:{{ cv.contact.email }}">{{ cv.contact.email }}</a></p>
+          </div>
+          <div class="mini">
+            <h3>LinkedIn</h3>
+            <p><a href="{{ cv.contact.linkedinUrl }}" target="_blank" rel="noreferrer">{{ cv.contact.linkedin }}</a></p>
+          </div>
+          <div class="mini">
+            <h3>GitHub</h3>
+            <p><a href="{{ cv.contact.githubUrl }}" target="_blank" rel="noreferrer">{{ cv.contact.github }}</a></p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <span data-i18n="footer_text"></span> •
+      <a href="https://github.com/FELHASZNÁLÓNÉV/online-cv"
+        target="_blank" rel="noreferrer"
+        data-i18n="footer_link">
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    // Theme toggle
+    const root = document.body;
+    const themeBtn = document.getElementById("themeBtn");
+    const savedTheme = localStorage.getItem("cv-theme");
+    if (savedTheme === "light" || savedTheme === "dark") root.dataset.theme = savedTheme;
+    themeBtn.addEventListener("click", () => {
+      root.dataset.theme = (root.dataset.theme === "dark") ? "light" : "dark";
+      localStorage.setItem("cv-theme", root.dataset.theme);
+    });
+
+    // i18n from JSON data (inlined at build time)
+    const CV = {{ cv | dump | safe }};
+    const I18N = CV.i18n;
+
+    // Build a flat dictionary for dynamic keys (jobs, edu, projects, languages)
+    function buildDict(lang){
+      const dict = { ...I18N[lang] };
+
+      // section labels into flat keys
+      dict.sec_experience = I18N[lang].sections.experience;
+      dict.sec_experience_hint = I18N[lang].sections.experienceHint;
+      dict.sec_education = I18N[lang].sections.education;
+      dict.sec_education_hint = I18N[lang].sections.educationHint;
+      dict.sec_skills = I18N[lang].sections.skills;
+      dict.sec_skills_hint = I18N[lang].sections.skillsHint;
+      dict.sec_projects = I18N[lang].sections.projects;
+      dict.sec_projects_hint = I18N[lang].sections.projectsHint;
+      dict.sec_languages = I18N[lang].sections.languages;
+      dict.sec_languages_hint = I18N[lang].sections.languagesHint;
+      dict.sec_contact = I18N[lang].sections.contact;
+      dict.sec_contact_hint = I18N[lang].sections.contactHint;
+      dict.footer_text = I18N[lang].footer.text;
+      dict.footer_link = I18N[lang].footer.link;
+
+      // buttons
+      dict.btn_lang = (lang === "hu") ? "HU / EN" : "EN / HU";
+      dict.btn_theme = (lang === "hu") ? "Téma" : "Theme";
+      dict.btn_print = "Print / Save PDF";
+
+
+      dict.btn_print = I18N[lang].buttons.print;
+
+
+      // Experience
+      CV.experience.forEach((job, i) => {
+        dict[`exp_${i}_title`] = job[lang].title;
+        dict[`exp_${i}_meta`]  = job[lang].meta;
+        dict[`exp_${i}_desc`]  = job[lang].desc;
+        job[lang].bullets.forEach((b, bi) => dict[`exp_${i}_b${bi}`] = b);
+      });
+
+      // Education
+      CV.education.forEach((ed, i) => {
+        dict[`edu_${i}_title`] = ed[lang].title;
+        dict[`edu_${i}_meta`]  = ed[lang].meta;
+        dict[`edu_${i}_desc`]  = ed[lang].desc;
+      });
+
+      // Projects
+      CV.projects.forEach((p, i) => {
+        dict[`pr_${i}_title`] = p[lang].title;
+        dict[`pr_${i}_desc`]  = p[lang].desc;
+      });
+
+      // Languages
+      CV.languages.forEach((l, i) => {
+        dict[`lang_${i}_title`] = l[lang].title;
+        dict[`lang_${i}_desc`]  = l[lang].desc;
+      });
+
+      return dict;
+    }
+
+    function applyLang(lang){
+      document.documentElement.lang = (lang === "en") ? "en" : "hu";
+      const dict = buildDict(lang);
+
+      // title/description
+      document.title = (lang === "en") ? `Online CV — ${dict.name}` : `Online CV — ${dict.name}`;
+      const md = document.querySelector('meta[name="description"]');
+      if (md) md.setAttribute("content", document.title);
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+
+      localStorage.setItem("cv-lang", lang);
+    }
+
+    const langBtn = document.getElementById("langBtn");
+    const savedLang = localStorage.getItem("cv-lang");
+    const initial = (savedLang === "en" || savedLang === "hu") ? savedLang : "hu";
+    applyLang(initial);
+
+    langBtn.addEventListener("click", () => {
+      const next = (localStorage.getItem("cv-lang") === "hu") ? "en" : "hu";
+      applyLang(next);
+    });
+  </script>
+</body>
+</html>

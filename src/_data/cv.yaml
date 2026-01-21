@@ -1,0 +1,269 @@
+profileImage: "assets/profile.jpg"
+
+contact:
+  city: "Budapest"
+  country: "HU"
+  email: "sunikovacs@gmail.com"
+  phone: "+36 70 634 7173"
+  github: "github.com/samthing94"
+  githubUrl: "https://github.com/samthing94"
+  linkedin: "linkedin.com/in/sámuel-kovács-5b6593157"
+  linkedinUrl: "https://www.linkedin.com/in/s%C3%A1muel-kov%C3%A1cs-5b6593157/"
+
+i18n:
+  hu:
+    name: "Kovács Sámuel"
+    role: "Embedded / Firmware Engineer • IoT • BLE • STM32 / nRF52"
+    summary: >
+      5+ év production embedded fejlesztés IoT / automotive projektekben. C/C++, Python tooling,
+      bootloaderek, UDS over CAN, secure update workflow (HTTP/XMODEM), BLE stackek és alacsony
+      fogyasztás. Erősségek: megbízhatóság (CI/CD, unit tesztek), terepi diagnosztika, kollaboráció.
+    kpiYearsNum: "5+ év"
+    kpiYearsLbl: "production firmware"
+    kpiStackNum: "IoT + Auto"
+    kpiStackLbl: "STM32 / nRF52 / EFR32"
+    sections:
+      experience: "TAPASZTALAT"
+      experienceHint: "Legutóbbi felül"
+      education: "TANULMÁNYOK"
+      educationHint: "egyetem"
+      skills: "KÉSZSÉGEK"
+      skillsHint: "stack jelenleg"
+      projects: "PROJEKTEK"
+      projectsHint: "3 kedvenc"
+      languages: "NYELVEK"
+      languagesHint: "aktívan használt"
+      contact: "ELÉRHETŐSÉG"
+      contactHint: "kattintható"
+    footer:
+      text: "Készült a saját statikus CV generátorommal ❤️"
+      link: "Csekkold a GitHub fiókomon"
+    buttons:
+      print: "Nyomtatás / PDF mentés"
+
+  en:
+    name: "Sámuel Kovács"
+    role: "Staff Firmware Engineer • IoT • Embedded Systems"
+    summary: >
+      Staff Firmware Engineer with 5+ years building production embedded systems for IoT and automotive.
+      Deliver robust C/C++ firmware on EFR32, MSP430, STM32, and nRF52, integrating LwM2M device management,
+      cellular (Quectel) connectivity, OTA/bootloaders, and secure communications. Ship smart water meters
+      and smart-city lighting platforms; create Python tooling and CI/CD practices to accelerate testing,
+      field diagnostics, and release quality.
+    kpiYearsNum: "5+ yrs"
+    kpiYearsLbl: "production firmware"
+    kpiStackNum: "IoT + Auto"
+    kpiStackLbl: "STM32 / nRF52 / EFR32"
+    sections:
+      experience: "EXPERIENCE"
+      experienceHint: "Most recent first"
+      education: "EDUCATION"
+      educationHint: "university"
+      skills: "SKILLS"
+      skillsHint: "stack snapshot"
+      projects: "PROJECTS"
+      projectsHint: "3 favorite"
+      languages: "LANGUAGES"
+      languagesHint: "actively used"
+      contact: "CONTACT"
+      contactHint: "clickable"
+    footer:
+      text: "Generated using my static CV generator ❤️"
+      link: "View source on GitHub"
+    buttons:
+      print: "Print / Save PDF"
+  
+experience:
+  - start: "2024-09-01"
+    end: null
+    tags: ["C/C++", "EFR32", "MSP430", "LwM2M", "Python", "CI/CD", "IoT"]
+    hu:
+      title: "Staff Firmware Engineer — Itron Labs Kft."
+      meta: "2024. szeptember – jelen • Budapest"
+      desc: "Okosmérő rendszerek firmware fejlesztése gyártásra szánt IoT eszközökhöz."
+      bullets:
+        - "Smart water meter firmware vezető fejlesztése EFR32 és MSP430 MCU-kon."
+        - "LwM2M eszközmenedzsment integráció távoli konfigurációhoz és telemetriához."
+        - "Python eszközök fejlesztése tesztautomatizáláshoz, terepi diagnosztikához és flasheléshez."
+        - "Szoros együttműködés hardware és product csapatokkal production-ready build-ekhez."
+        - "CI/CD folyamatok kialakítása és karbantartása."
+    en:
+      title: "Staff Firmware Engineer — Itron Labs Kft."
+      meta: "Sep 2024 – Present • Budapest"
+      desc: "Firmware development for production smart water meters."
+      bullets:
+        - "Lead firmware development for smart water meters on EFR32 and MSP430 MCUs."
+        - "Integrate LwM2M for device management, remote configuration, and telemetry."
+        - "Develop Python tools to accelerate test automation, field diagnostics, and flashing."
+        - "Collaborate with hardware and product teams to deliver robust, production-ready builds."
+        - "Contribute to CI/CD practices."
+
+  - start: "2022-08-01"
+    end: "2024-09-01"
+    tags: ["STM32", "Quectel", "Cellular", "Bootloader", "HTTP", "XMODEM", "Unity"]
+    hu:
+      title: "Embedded Software Engineer — EPAM Systems Kft."
+      meta: "2022. augusztus – 2024. szeptember • Budapest"
+      desc: "Smart-city világítási platform firmware fejlesztése amerikai telekommunikációs ügyfél számára."
+      bullets:
+        - "STM32 alapú firmware fejlesztése Quectel celluláris modemekkel."
+        - "Beágyazott parancssori interfész fejlesztése konfigurációhoz és diagnosztikához."
+        - "Firmware frissítési folyamatok implementálása HTTP és XMODEM protokollokon."
+        - "Modem kommunikáció, driverek és bootloader integráció karbantartása."
+        - "C nyelvű unit tesztek (Unity) és Python tooling fejlesztése."
+    en:
+      title: "Embedded Software Engineer — EPAM Systems Kft."
+      meta: "Aug 2022 – Sep 2024 • Budapest"
+      desc: "Firmware development for a smart-city lighting platform for a US telecom customer."
+      bullets:
+        - "Built firmware on STM32 with Quectel cellular modems."
+        - "Developed an embedded command-line interface for configuration and diagnostics."
+        - "Implemented application and modem firmware update workflows over HTTP and XMODEM."
+        - "Integrated and maintained modem communication, drivers, and bootloader interactions."
+        - "Created unit tests in C with Unity and Python tooling."
+
+  - start: "2020-11-01"
+    end: "2022-08-01"
+    tags: ["QNX", "UDS", "CAN", "GoogleTest", "MISRA", "Automotive"]
+    hu:
+      title: "Embedded Software Developer — AKKA Hungary Kft."
+      meta: "2020. november – 2022. augusztus • Budapest"
+      desc: "Autóipari műszeregység szoftverfejlesztése QNX környezetben."
+      bullets:
+        - "Szoftverfrissítési funkcionalitás fejlesztése QNX alapú instrument clusterhez."
+        - "UDS over CAN protokoll alkalmazása frissítési folyamatokhoz."
+        - "Unit tesztek készítése GoogleTest és HippoMocks segítségével."
+        - "MISRA 2012 megfelelőség biztosítása statikus analízissel."
+        - "Technikai dokumentáció karbantartása Confluence-ben."
+    en:
+      title: "Embedded Software Developer — AKKA Hungary Kft."
+      meta: "Nov 2020 – Aug 2022 • Budapest"
+      desc: "Embedded software development for an automotive instrument cluster."
+      bullets:
+        - "Delivered software-update functionality for an automotive instrument cluster running QNX."
+        - "Used UDS over CAN for update workflows."
+        - "Authored unit tests with GoogleTest and HippoMocks."
+        - "Enforced MISRA 2012 compliance via static analysis."
+        - "Maintained technical documentation in Confluence."
+
+  - start: "2020-02-01"
+    end: "2020-09-01"
+    tags: ["nRF52", "BLE", "Quectel", "LTE", "Security"]
+    hu:
+      title: "Embedded Software Developer Intern — Dension Elektronikai Kft."
+      meta: "2020. február – 2020. szeptember • Budapest"
+      desc: "IoT és kommunikációs fókuszú beágyazott rendszerek fejlesztése."
+      bullets:
+        - "Publikus kerékpár-kölcsönző rendszer fejlesztése nRF52 platformon."
+        - "ECDSA-aláírt SMS üzenetek ellenőrzése és kulcskezelés MQTT broker segítségével."
+        - "BLE kapcsolatok titkosítása AES-128 algoritmussal."
+        - "Nem blokkoló 1-Wire iButton library implementálása."
+        - "nRF52 funkcionalitás portolása Quectel LTE modulra (QuecOpen SDK)."
+    en:
+      title: "Embedded Software Developer Intern — Dension Elektronikai Kft."
+      meta: "Feb 2020 – Sep 2020 • Budapest"
+      desc: "Embedded development for IoT and connectivity-focused systems."
+      bullets:
+        - "Worked on a public bike-rental system using nRF52 and a Quectel LTE module."
+        - "Verified ECDSA-signed SMS messages and retrieved keys from an MQTT broker."
+        - "Secured BLE links with AES-128."
+        - "Implemented a non-blocking 1-Wire library for iButton."
+        - "Ported nRF52 features to an LTE module using the QuecOpen SDK."
+
+  - start: "2017-03-01"
+    end: "2019-08-01"
+    tags: ["Mentoring", "STM32", "C/C++", "Agile"]
+    hu:
+      title: "Mentor — Green Fox Academy Kft."
+      meta: "2017. március – 2019. augusztus • Budapest"
+      desc: "Pályaváltók mentorálása beágyazott rendszerek fejlesztésében."
+      bullets:
+        - "Hallgatók mentorálása C/C++ és STM32 alapú embedded fejlesztésben."
+        - "4–6 fős csapatok vezetése product owner szerepben."
+        - "Hallgatói projektek irányítása (line-following autó, LiDAR robot)."
+        - "Git, Jira és agilis módszertanok oktatása."
+    en:
+      title: "Mentor — Green Fox Academy Kft."
+      meta: "Mar 2017 – Aug 2019 • Budapest"
+      desc: "Mentored career-changers in embedded systems development."
+      bullets:
+        - "Mentored students in C/C++ and STM32-based embedded development."
+        - "Led 4–6 person student teams as product owner."
+        - "Guided student projects including line-tracking cars and LiDAR-based robots."
+        - "Taught Git, Jira, and introduced agile practices."
+
+education:
+  - start: "2015-01-01"
+    end: "2020-01-01"
+    hu:
+      title: "Óbudai Egyetem — Villamosmérnöki BSc"
+      meta: "2015 – 2020 • Budapest"
+      desc: >
+        Elektronikai és orvosi műszerek, mérés specializáció.
+        Minősítés: kiváló (4,66).
+        Szakdolgozat: Alvásmonitor és aktivitásmérő óra fejlesztése.
+    en:
+      title: "Óbuda University — BSc in Electrical Engineering"
+      meta: "2015 – 2020 • Budapest"
+      desc: >
+        Specialization in electronic and medical instruments and testing.
+        Final qualification: excellent (4.66).
+        Thesis: Development of a sleep monitor and activity tracker watch.
+
+skills:
+  - "C"
+  - "C++"
+  - "Python"
+  - "Embedded Linux"
+  - "FreeRTOS"
+  - "QNX"
+  - "STM32"
+  - "nRF52"
+  - "EFR32"
+  - "MSP430"
+  - "BLE"
+  - "LwM2M"
+  - "UDS over CAN"
+  - "Cellular (Quectel)"
+  - "Bootloaders / OTA"
+  - "CI/CD"
+  - "Git"
+  - "Unit testing (Unity, GoogleTest)"
+  - "MISRA C"
+
+projects:
+  - hu:
+      title: "Healthy Timer (Chrome extension)"
+      desc: "Egészséges munkarutin időzítő Chrome böngészőhöz, állítható asztalokhoz is ideális."
+    en:
+      title: "Healthy Timer (Chrome extension)"
+      desc: "Healthy work-routine timer for Chrome, ideal for sit-stand desks."
+
+  - hu:
+      title: "Smart Water Meter Firmware"
+      desc: "Production firmware okosmérőkhöz (EFR32/MSP430), LwM2M eszközmenedzsmenttel."
+    en:
+      title: "Smart Water Meter Firmware"
+      desc: "Production firmware for smart water meters (EFR32/MSP430) with LwM2M device management."
+
+  - hu:
+      title: "Smart-City Lighting Platform"
+      desc: "STM32 alapú firmware és OTA frissítési flow Quectel celluláris modemekkel."
+    en:
+      title: "Smart-City Lighting Platform"
+      desc: "STM32-based firmware and OTA update flows using Quectel cellular modems."
+
+
+languages:
+  - hu:
+      title: "Angol"
+      desc: "Középfokú"
+    en:
+      title: "English"
+      desc: "Intermediate"
+  - hu:
+      title: "Német"
+      desc: "Alapfokú"
+    en:
+      title: "German"
+      desc: "Elementary"
